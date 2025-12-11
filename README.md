@@ -14,9 +14,9 @@ The models were benchmarked on a dedicated test set. Given the high business cos
 
 | Classifier | Accuracy | Precision (Delayed) | Recall (Delayed) | F1-Score (Delayed) | ROC AUC Score |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Decision Tree** | [Insert Accuracy] | [Insert Precision] | [Insert Recall] | **[Insert F1-Score]** | [Insert AUC] |
-| **K-Nearest Neighbors**| [Insert Accuracy] | [Insert Precision] | [Insert Recall] | [Insert F1-Score] | [Insert AUC] |
-| **Naive Bayes** | [Insert Accuracy] | [Insert Precision] | [Insert Recall] | [Insert F1-Score] | [Insert AUC] |
+| **Decision Tree** | [0.4500] | [0.4545] | [0.5000] | **[0.4762]** | [0.4375] |
+| **K-Nearest Neighbors**| [0.4250] | [0.4118] | [0.3500] | [0.3784] | [0.4213] |
+| **Naive Bayes** | [0.4750] | [0.4706] | [0.4000] | [0.4324] | [0.4275] |
 
 **Key Takeaway:** The F1-Score is our primary selection metric, as it provides the most effective balance between identifying true delays (Recall) and minimizing confusing false alarms (Precision).
 
@@ -36,7 +36,7 @@ The confusion matrices were analyzed to understand the type of errors made by ea
 
 The Receiver Operating Characteristic (ROC) curves illustrate the discrimination capability of the models. The Area Under the Curve (AUC) quantifies this power. 
 
-* **Discriminative Power:** The curve for the **[Insert Best Model Name]** model tracked closest to the top-left corner of the plot, which is mathematically confirmed by its superior **AUC Score of [Insert AUC]**. This indicates it is the most robust classifier across all possible thresholds.
+* **Discriminative Power:** The curve for the **[Decision Tree]** model tracked closest to the top-left corner of the plot, which is mathematically confirmed by its superior **AUC Score of [0.4375]**. This indicates it is the most robust classifier across all possible thresholds.
 
 ---
 
@@ -44,7 +44,7 @@ The Receiver Operating Characteristic (ROC) curves illustrate the discrimination
 
 ### Trade-offs Between Classifiers
 
-| Model | Core Advantage (In My Words) | Core Limitation (In My Words) |
+| Model | Core Advantage  | Core Limitation |
 | :--- | :--- | :--- |
 | **Naive Bayes** | Extremely fast and computationally inexpensive, making it a good baseline or fast-inference option. | Its reliance on features being statistically independent often limits its accuracy on real-world, correlated data. |
 | **KNN** | Highly effective on complex decision boundaries without assuming data distribution (non-parametric). | It is computationally expensive during the prediction phase and is very sensitive to feature scaling and outliers. |
@@ -52,10 +52,10 @@ The Receiver Operating Characteristic (ROC) curves illustrate the discrimination
 
 ### Final Classifier Recommendation
 
-The recommended model for deployment is the **[Insert the best performing model based on F1-Score/AUC]**.
+The recommended model for deployment is the **[Decision Tree]**.
 
 #### Justification
 
-1.  **Metric Performance:** The **[Model Name]** stood out by achieving the highest **F1-Score of [Insert F1-Score]** and a strong **AUC of [Insert AUC]**. This performance ensures the best operational balance, successfully identifying true delays while keeping false alarms manageable.
+1.  **Metric Performance:** The **[Decision Tree]** stood out by achieving the highest **F1-Score of [0.4762]** and a strong **AUC of [0.4500]**. This performance ensures the best operational balance, successfully identifying true delays while keeping false alarms manageable.
 2.  **Operational Benefit (If Decision Tree is selected):** If the Decision Tree was chosen, its high interpretability is invaluable. It clearly showed that **`Haversine_Distance_km`**, **`Traffic_Conditions`**, and **`Order_Time`** are the most powerful predictors of delay. This insight allows the operations team to focus strategic efforts on improving these specific areas (e.g., optimizing route planning or shifting driver shifts).
 3.  **Business Impact:** By prioritizing a model that minimizes **False Negatives**, we directly improve customer experience. The system can proactively trigger alerts (to drivers or customers) only when a delay is genuinely likely, boosting reliability and satisfaction.
